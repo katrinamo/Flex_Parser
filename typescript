@@ -1,0 +1,228 @@
+Script started on Mon 09 Oct 2017 12:42:55 AM EDT
+[4mviolet[24m:[1m~/pa1[0m> echo "TO BUI[K[K[K[Ko build the program: " >/dev/null
+[4mviolet[24m:[1m~/pa1[0m> make
+flex branch.l
+gcc -Wall -pedantic -g -pg -c lex.yy.c -lfl
+[01m[Klex.yy.c:1323:17:[m[K [01;35m[Kwarning: [m[K‘[01m[Kyyunput[m[K’ defined but not used [-Wunused-function]
+     static void yyunput (int c, char * yy_bp )
+[01;32m[K                 ^[m[K
+[01m[Klex.yy.c:1366:16:[m[K [01;35m[Kwarning: [m[K‘[01m[Kinput[m[K’ defined but not used [-Wunused-function]
+     static int input  (void)
+[01;32m[K                ^[m[K
+gcc -Wall -pedantic -g -pg -c parser.c
+[01m[Kparser.c:[m[K In function ‘[01m[Kparse[m[K’:
+[01m[Kparser.c:23:5:[m[K [01;35m[Kwarning: [m[Kimplicit declaration of function ‘[01m[Kprint_symbol_table[m[K’ [-Wimplicit-function-declaration]
+     print_symbol_table();
+[01;32m[K     ^[m[K
+gcc -Wall -pedantic -g -pg -c emitter.c
+gcc -Wall -pedantic -g -pg -c symbol.c
+gcc -Wall -pedantic -g -pg -c init.c
+[01m[Kinit.c:6:14:[m[K [01;35m[Kwarning: [m[Kinvalid use of structure with flexible array member [-Wpedantic]
+ struct entry keywords[] = {
+[01;32m[K              ^[m[K
+gcc -Wall -pedantic -g -pg -c error.c
+gcc -Wall -pedantic -g -pg -c display.c
+gcc -Wall -pedantic -g -pg -c main.c
+gcc -Wall -pedantic -g -pg lex.yy.o parser.o emitter.o symbol.o init.o error.o display.o main.o  -o pa1cs441f17
+[4mviolet[24m:[1m~/pa1[0m> ls
+branch.l   emitter.c  error.o	init.o	  main.c    myTests	       parser.c  symbol.c
+display.c  emitter.o  global.h	lex.yy.c  main.o    original-symbol.c  parser.o  symbol.o
+display.o  error.c    init.c	lex.yy.o  Makefile  pa1cs441f17        README	 typescript
+[4mviolet[24m:[1m~/pa1[0m> echo "no[K[KNow we ca n[Kn run the program!" >/dev/null
+[4mviolet[24m:[1m~/pa1[0m> ./pa
+pa1cs441f17* parser.c*    
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 >[K< myTests/test000.branch
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:44:00 2017
+
+100 BEGIN 
+7 END. 
+
+
+Parsing successful!
+
+SYMBOL TABLE:
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test000.branch[P[P
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:44:06 2017
+
+0 BEGIN 
+1 a = 6 ; GOTO 2 ; 
+7 PRINT a ; GOTO 9 ; 
+9 END. 
+
+
+Parsing successful!
+
+SYMBOL TABLE:
+    a: 2
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test0.branch[P[1@1[1@0
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:44:09 2017
+
+
+line 5; syntax error - unexpected token
+Parsing failed.
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test10.branch[P[P[1@2
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:44:18 2017
+
+0 BEGIN 
+1 a = 4 + 6 ; GOTO 2 ; 
+2 IF ( a + 1 < a * a - 90 ) GOTO 3 ELSE GOTO 4 ; 
+3 NULL ; GOTO 9 ; 
+4 PRINT "a larger or equal to 0" ; GOTO 7 ; 
+7 PRINT a ; GOTO 9 ; 
+9 END. 
+
+
+Parsing successful!
+
+SYMBOL TABLE:
+    a: 5
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test2.branch[P[1@3[1@m
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:44:25 2017
+
+
+line 4; syntax error- malformed GOTO statement
+
+Parsing failed.
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test3m.branch[P[P[1@4
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:44:29 2017
+
+
+line 2; syntax error: lines must begin with a LABEL
+Parsing failed.
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test4.branch[1@m
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:44:31 2017
+
+
+line 2; syntax error: lines must begin with a LABEL
+Parsing failed.
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test4m.branch[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kexho "[K[K[K[Kcho "These two fail because of a second GOTO statme[K[Kemt[Kt[Kent. The way I wrote my grammer that is not[K[K[K[K[K[K[K[K[K[K[Kar does not allow for  that. " >/dev/null
+[4mviolet[24m:[1m~/pa1[0m> echo "I th[K[K[KI know some other student s have test4 and test4m b[Kpassing, but I do not." >/dev/null
+[4mviolet[24m:[1m~/pa1[0m> echo "I know some other students have test4 and test4m passing, but I do not." > /dev/null[21GThese two fail because of a second GOTO statement. The way I wrote my grammar does not allow for  that." > /dev/null[A./pa1cs441f17 < myTests/test4m.branch[K[117G t[K[A[52G[P[P[1@5
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:45:33 2017
+
+
+line 4; syntax error- malformed GOTO statement
+
+Parsing failed.
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test5.branch[P
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:45:36 2017
+
+
+line 6; syntax error - unexpected token
+Parsing failed.
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:45:40 2017
+
+0 BEGIN
+1 a = 10 + 23; GOTO 2019;
+2 IF (cs+441<b*b-4*a*c) GOTO 3 ELSE GOTO 4;
+3 NULL  ; GOTO 7l ;
+4 PRINT "delta larger of equal to 0"; GOTO 7;
+5 PRINT 2019 7; GOTO 2017;
+
+line 6; syntax error- malformed print statment
+
+Parsing failed.
+[4mviolet[24m:[1m~/pa1[0m> ^Dexit
+
+Script done on Mon 09 Oct 2017 12:47:27 AM EDT
+Script started on Mon 09 Oct 2017 12:49:46 AM EDT
+[4mviolet[24m:[1m~/pa1[0m> echo "Just fixed that last error. REMAKING!" > /dev/null
+[4mviolet[24m:[1m~/pa1[0m> make clean
+rm -f lex.yy.o parser.o emitter.o symbol.o init.o error.o display.o main.o  lex.yy.c pa1cs441f17
+[4mviolet[24m:[1m~/pa1[0m> ls
+branch.l   emitter.c  global.h	init.c	Makefile  original-symbol.c  README    typescript
+display.c  error.c    gmon.out	main.c	myTests   parser.c	     symbol.c
+[4mviolet[24m:[1m~/pa1[0m> make
+flex branch.l
+gcc -Wall -pedantic -g -pg -c lex.yy.c -lfl
+[01m[Klex.yy.c:1323:17:[m[K [01;35m[Kwarning: [m[K‘[01m[Kyyunput[m[K’ defined but not used [-Wunused-function]
+     static void yyunput (int c, char * yy_bp )
+[01;32m[K                 ^[m[K
+[01m[Klex.yy.c:1366:16:[m[K [01;35m[Kwarning: [m[K‘[01m[Kinput[m[K’ defined but not used [-Wunused-function]
+     static int input  (void)
+[01;32m[K                ^[m[K
+gcc -Wall -pedantic -g -pg -c parser.c
+[01m[Kparser.c:[m[K In function ‘[01m[Kparse[m[K’:
+[01m[Kparser.c:23:5:[m[K [01;35m[Kwarning: [m[Kimplicit declaration of function ‘[01m[Kprint_symbol_table[m[K’ [-Wimplicit-function-declaration]
+     print_symbol_table();
+[01;32m[K     ^[m[K
+gcc -Wall -pedantic -g -pg -c emitter.c
+gcc -Wall -pedantic -g -pg -c symbol.c
+gcc -Wall -pedantic -g -pg -c init.c
+[01m[Kinit.c:6:14:[m[K [01;35m[Kwarning: [m[Kinvalid use of structure with flexible array member [-Wpedantic]
+ struct entry keywords[] = {
+[01;32m[K              ^[m[K
+gcc -Wall -pedantic -g -pg -c error.c
+gcc -Wall -pedantic -g -pg -c display.c
+gcc -Wall -pedantic -g -pg -c main.c
+gcc -Wall -pedantic -g -pg lex.yy.o parser.o emitter.o symbol.o init.o error.o display.o main.o  -o pa1cs441f17
+[4mviolet[24m:[1m~/pa1[0m> ls
+branch.l   emitter.c  error.o	init.c	  lex.yy.o  Makefile	       pa1cs441f17  README    typescript
+display.c  emitter.o  global.h	init.o	  main.c    myTests	       parser.c     symbol.c
+display.o  error.c    gmon.out	lex.yy.c  main.o    original-symbol.c  parser.o     symbol.o
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test65[K.branch 
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:50:21 2017
+
+0 BEGIN 
+1 a = 10 + 23 ; GOTO 2019 ; 
+2 IF ( cs + 441 < b * b - 4 * a * c ) GOTO 3 ELSE GOTO 4 ; 
+3 NULL ; GOTO 7 ; 
+4 PRINT "delta larger of equal to 0" ; GOTO 7 ; 
+5 PRINT 2017 ; GOTO 2017 ; 
+2017 END. 
+
+
+Parsing successful!
+
+SYMBOL TABLE:
+    cs: 1
+    a: 2
+    b: 2
+    c: 1
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test6.branch[P[1@4
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:50:26 2017
+
+
+line 2; syntax error: lines must begin with a LABEL
+Parsing failed.
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test4.branch[P[1@0
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:50:28 2017
+
+0 BEGIN 
+1 a = 6 ; GOTO 2 ; 
+7 PRINT a ; GOTO 9 ; 
+9 END. 
+
+
+Parsing successful!
+
+SYMBOL TABLE:
+    a: 2
+[4mviolet[24m:[1m~/pa1[0m> ./pa1cs441f17 < myTests/test0.branch[1@0[1@0
+recursive descent for expressions: Katie Long from Aho & JWJ
+Mon Oct  9 00:50:31 2017
+
+100 BEGIN 
+7 END. 
+
+
+Parsing successful!
+
+SYMBOL TABLE:
+[4mviolet[24m:[1m~/pa1[0m> ^Dexit
+
+Script done on Mon 09 Oct 2017 12:50:33 AM EDT

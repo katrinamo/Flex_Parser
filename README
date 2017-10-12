@@ -1,0 +1,24 @@
+Author: Katie Long
+Date Created: 10/6/2017
+Date Completed: 10/8/2017
+
+FILES INCLUDED: branch.l main.c parser.c global.h symbol.c original-symbol.c init.c error.c emitter.c display.c TESTS/*
+
+DESCRIPTION: This is a recursive descent parser designed for the Compilers course taught at the University of Kentucky by Dr. Jerzy Jaromczyk. Much of the program is based on the AHO2017 handout provided in class. 
+
+USAGE:
+        make                                //compiles the parser
+        ./pa1cs441f17 < FILENAME.branch     //parses the given .branch file written in the branch 441 language
+        ./pa1cs441f17                       //parses a program from the command line
+                                            //program through the commandline
+        
+        make clean                          //cleans all .o files, lex.yy.c, and the executeable
+
+
+ERRATA: 
+
+    LINE NUMBERS given for errors are often not representative of the actual location of the error. Often, the error is on the line prior. This is particularly evident in the failure of a user to follow the standard of <statement> <goto>. The parser expects the next line to begin with a LABEL, and upon failing to see that it throws an error for the next line- as it has tried to move on.
+
+    DISPLAY.C is deprecated. Some lines of code implementing that display pattern are commented out throughout the project.
+
+    TWO GOTO statements are considered wrong for this grammar. Thus, test4 and test4m fail.
